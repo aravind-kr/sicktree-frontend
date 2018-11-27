@@ -1,4 +1,4 @@
-const theme = {
+const globalTheme = {
     whiteBg: '#F8EDE7',
     blackLight: '#5B5655',
     blackDark: '#0E0D11',
@@ -10,4 +10,4 @@ const theme = {
 
 }
 
-export default theme;
+export default globalTheme;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider, injectGlobal } from 'styled-components';
 import Meta from '../components/Meta';
-import theme from '../components/theme';
+// import theme from '../components/theme';
 
 injectGlobal`
   @font-face {
@@ -26,7 +26,7 @@ injectGlobal`
   }
   a {
     text-decoration: none;
-    color: ${theme.black};
+    color: '#333';
   }
   button {  font-family: 'radnika_next'; }
 `;
@@ -34,12 +34,12 @@ injectGlobal`
 class Page extends Component {
     render() {
         return (
-            <ThemeProvider theme={theme}>
+            // <ThemeProvider theme={theme}>
                 <div>
                     <Meta />
                     {this.props.children}
                 </div>
-            </ThemeProvider>
+            // </ThemeProvider>
         );
     }
 }
