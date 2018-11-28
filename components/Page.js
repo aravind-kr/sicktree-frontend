@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider, injectGlobal } from 'styled-components';
 import Meta from '../components/Meta';
-// import theme from '../components/theme';
+import Nav from '../components/Nav';
+import globalTheme from '../components/theme';
 
 injectGlobal`
   @font-face {
@@ -10,6 +11,21 @@ injectGlobal`
     font-weight: normal;
     font-style: normal;
   }
+
+  @font-face {
+    font-family: 'garamond-light';
+    src: url('/static/GARA.TTF');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'garamond-bold';
+    src: url('/static/GARABD.TTF');
+    font-weight: normal;
+    font-style: normal;
+  }
+
   html {
     box-sizing: border-box;
     font-size: 10px;
@@ -26,7 +42,7 @@ injectGlobal`
   }
   a {
     text-decoration: none;
-    color: '#333';
+    color: '#fff';
   }
   button {  font-family: 'radnika_next'; }
 `;
@@ -34,12 +50,13 @@ injectGlobal`
 class Page extends Component {
     render() {
         return (
-            // <ThemeProvider theme={theme}>
+            <ThemeProvider theme={globalTheme}>
                 <div>
                     <Meta />
+                    <Nav />
                     {this.props.children}
                 </div>
-            // </ThemeProvider>
+            </ThemeProvider>
         );
     }
 }
