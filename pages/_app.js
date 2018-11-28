@@ -30,8 +30,8 @@ class _app extends App {
     }
 
     render() {
-        const { Component, pageProps } = this.props
-        
+        const { Component, pageProps } = this.props;
+
         return (
             <Container>
                 <JssProvider
@@ -42,6 +42,7 @@ class _app extends App {
                         theme={this.pageContext.theme}
                         sheetsManager={this.pageContext.sheetsManager}
                     >
+                        <CssBaseline />
                         <Page>
                             <Component {...pageProps} />
                         </Page>
