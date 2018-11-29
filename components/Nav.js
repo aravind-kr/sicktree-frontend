@@ -6,10 +6,19 @@ const NavDiv = styled.div`
     width: 100%;
     text-align: center;
     position: relative;
-    height: 50px;
     background: ${props => props.theme.white};
     box-shadow: ${props => props.theme.bs};
     z-index: 100;
+    @media (max-width: 768x) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.5rem;
+        height: auto !important;
+    }
+    @media (min-width: 769px) {
+        height: 50px;
+    }
 `;
 
 const Logo = styled.p`
@@ -23,6 +32,9 @@ const Logo = styled.p`
         color: ${props => props.theme.textDark};
         font-family: garamond-bold;
     }
+    @media (max-width: 768px) {
+        position: relative;
+    }
 `;
 
 const NavBar = styled.div`
@@ -30,6 +42,9 @@ const NavBar = styled.div`
     top: 0;
     right: 0;
     height: inherit;
+    @media (max-width: 768px) {
+        position: relative;
+    }
 `;
 
 const NavBarInner = styled.div`
@@ -53,12 +68,12 @@ const SignUpBtn = styled.a`
     margin-right: 20px;
     text-align: center;
     font-family: garamond-light;
-    border: 1px solid palevioletred;
+    border: 1px solid ${props => props.theme.textMedium};
     border-radius: 5px;
     transition: background-color 0.5s ease;
     transition: color 0.5s ease;
     :hover {
-        background: palevioletred;
+        background: ${props => props.theme.textMedium};
         color: ${props => props.theme.white};
     }
 `;
@@ -80,7 +95,7 @@ const Nav = props => (
                 </Link>
                 <Link href="/">
                     <_a>
-                        <FaRegUser /> Login
+                        <FaRegUser style={{ marginTop: '2px' }} /> Login
                     </_a>
                 </Link>
                 <Link href="/">
