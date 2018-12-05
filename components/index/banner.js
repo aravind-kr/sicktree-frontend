@@ -29,7 +29,6 @@ const InnerDiv = styled.div`
     a {
         color: ${props => props.theme.textMedium};
         background-color: ${props => props.theme.white};
-        border: 1px solid ${props => props.theme.textMedium};
         border-radius: 4px;
         padding: 20px;
         transition: background-color 0.5s ease;
