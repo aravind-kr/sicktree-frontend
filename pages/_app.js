@@ -25,7 +25,10 @@ class _app extends App {
             pageProps = await Component.getInitialProps(ctx);
         }
         // this exposes the query to the user
-        pageProps.query = ctx.query;
+        if (Object.keys(ctx.query).length) {
+            pageProps.query = ctx.query;
+        }
+
         return { pageProps };
     }
 
