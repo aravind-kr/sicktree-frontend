@@ -1,6 +1,11 @@
 import Link from 'next/link';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
+import Router from 'next/router';
 import { FaRegUser } from 'react-icons/fa';
+import { func } from 'prop-types';
+import User from './User';
 
 const NavDiv = styled.div`
     width: 100%;
@@ -59,6 +64,7 @@ const _a = styled.a`
     padding-right: 10px;
     text-align: center;
     font-family: garamond-light;
+    cursor: pointer;
 `;
 
 const SignUpBtn = styled.a`
@@ -78,32 +84,59 @@ const SignUpBtn = styled.a`
     }
 `;
 
+const Span = styled.span`
+    color: ${props => props.theme.textMedium};
+    line-height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    font-size: 1.6rem;
+    font-family: garamond-light;
+`;
+
 const Nav = props => (
-    <NavDiv>
-        <Logo>
-            <Link href="/">
-                <_a>SickTree</_a>
-            </Link>
-        </Logo>
-        <NavBar>
-            <NavBarInner>
-                <Link href="/">
-                    <_a>Pricing</_a>
-                </Link>
-                <Link href="/">
-                    <_a>Help</_a>
-                </Link>
-                <Link href="/">
-                    <_a>
-                        <FaRegUser style={{ marginTop: '2px' }} /> Login
-                    </_a>
-                </Link>
-                <Link href="/">
-                    <SignUpBtn>SIGN UP FREE</SignUpBtn>
-                </Link>
-            </NavBarInner>
-        </NavBar>
-    </NavDiv>
+    <User>
+        {({ data: { me } }) => (
+            <NavDiv>
+                <Logo>
+                    <Link href="/">
+                        <_a>SickTree</_a>
+                    </Link>
+                </Logo>
+                <NavBar>
+                    <NavBarInner>
+                        <Link href="/">
+                            <_a>Pricing</_a>
+                        </Link>
+                        <Link href="/">
+                            <_a>Help</_a>
+                        </Link>
+                        {!me && (
+                            <>
+                                <_a href={process.env.INSTAGRAM_AUTH_URI}>
+                                    <FaRegUser style={{ marginTop: '2px' }} />{' '}
+                                    Login
+                                </_a>
+                                <a href={process.env.INSTAGRAM_AUTH_URI}>
+                                    <SignUpBtn>SIGN UP FREE</SignUpBtn>
+                                </a>
+                            </>
+                        )}
+
+                        {me && (
+                            <>
+                                <Span>{me.username}</Span>
+                                <Link href="/">
+                                    <_a>Signout</_a>
+                                </Link>
+                            </>
+                        )}
+                        {/* <Link href="/something"> */}
+                    </NavBarInner>
+                </NavBar>
+            </NavDiv>
+        )}
+    </User>
 );
 
 export default Nav;
