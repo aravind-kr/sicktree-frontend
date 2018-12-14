@@ -2,6 +2,8 @@ import App, { Container } from 'next/app';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
+import { ApolloProvider } from 'react-apollo';
+import withData from '../lib/withData';
 import getPageContext from '../src/getPageContext';
 import Page from '../components/Page';
 
@@ -33,7 +35,7 @@ class _app extends App {
     }
 
     render() {
-        const { Component, pageProps } = this.props;
+        const { Component, apollo, pageProps } = this.props;
 
         return (
             <Container>
@@ -45,10 +47,12 @@ class _app extends App {
                         theme={this.pageContext.theme}
                         sheetsManager={this.pageContext.sheetsManager}
                     >
-                        <CssBaseline />
-                        <Page>
-                            <Component {...pageProps} />
-                        </Page>
+                        <ApolloProvider client={apollo}>
+                            <CssBaseline />
+                            <Page>
+                                <Component {...pageProps} />
+                            </Page>
+                        </ApolloProvider>
                     </MuiThemeProvider>
                 </JssProvider>
             </Container>
@@ -56,4 +60,4 @@ class _app extends App {
     }
 }
 
-export default _app;
+export default withData(_app);
