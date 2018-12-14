@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider, injectGlobal } from 'styled-components';
-import Meta from '../components/Meta';
-import Nav from '../components/Nav';
-import globalTheme from '../components/theme';
+import Meta from './Meta';
+import Nav from './Nav';
+import globalTheme from './theme';
 
 injectGlobal`
   @font-face {
