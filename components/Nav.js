@@ -6,6 +6,7 @@ import Router from 'next/router';
 import { FaRegUser } from 'react-icons/fa';
 import { func } from 'prop-types';
 import User from './User';
+import Signout from './Signout';
 
 const NavDiv = styled.div`
     width: 100%;
@@ -67,9 +68,8 @@ const _a = styled.a`
     cursor: pointer;
 `;
 
-const SignUpBtn = styled.a`
+const SignUpBtn = styled.button`
     color: ${props => props.theme.textMedium};
-    line-height: 50px;
     padding: 10px;
     margin-right: 20px;
     text-align: center;
@@ -126,9 +126,7 @@ const Nav = props => (
                         {me && (
                             <>
                                 <Span>{me.username}</Span>
-                                <Link href="/">
-                                    <_a>Signout</_a>
-                                </Link>
+                                <Signout />
                             </>
                         )}
                         {/* <Link href="/something"> */}
